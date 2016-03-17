@@ -1,7 +1,7 @@
 // Header File
 // Created 3/16/2016; 9:49:34 PM
 
-/* check_max_args: throws exception if there are too many arguments.
+/* check_max_args: throws an exception if there are too many arguments.
 
  * max: the maximum number of arguments to allow.
  
