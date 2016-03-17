@@ -8,6 +8,9 @@
 #define COMMENT_VERSION_NUMBER 1,0,0,0 /* major, minor, revision, subrevision */
 #define COMMENT_AUTHORS        "Ben 'TC01' Rosser"
 
+// Enable error returns; argparse68k uses this functionality.
+#define ENABLE_ERROR_RETURN
+
 #include <tigcclib.h>
 
 // Include the argparse68k library's header file.
@@ -20,7 +23,7 @@ void _main(void)
 	int val = get_int_arg(0, 0, 0);
 	
 	// This means "ask for the 1st argument, if it is not there, return "Hello world!"
-	const char* arg = get_str_arg(0, 1, "Hello world!");
+	const char* arg = get_str_arg(1, 1, "Hello world!");
 
 	// Now print out the arguments so the user can see what happened.
 	clrscr();
@@ -28,3 +31,4 @@ void _main(void)
 	printf(arg);
 	ngetchx();
 }
+
