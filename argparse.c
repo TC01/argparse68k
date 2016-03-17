@@ -12,7 +12,8 @@
 
 /* Helper function to check if an argument index is valid.
    Takes an integer index, throws ER_ARGUMENT if it is less than zero
-   or 
+   or greater than or equal to the number of argumennts actually
+   passed to the program.
  */
 void bounds_check(int index)
 {
