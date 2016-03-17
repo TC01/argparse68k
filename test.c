@@ -19,6 +19,9 @@
 // Main Function
 void _main(void)
 {
+	// This means "throw ER_ARGUMENT if we have more than 2 args."
+	check_max_args(2);
+
 	// This means "ask for the 0th argument, throw ER:ARGUMENT if it is not there.
 	int val = get_int_arg(0, 0, 0);
 	

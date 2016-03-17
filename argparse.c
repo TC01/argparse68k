@@ -55,6 +55,17 @@ void type_check(CESI argptr, unsigned char type, unsigned char type2)
 	}
 }
 
+// Method to check the maximum number of arguments.
+// Definition in argparse.h.
+
+void check_max_args(int max)
+{
+	if ((int)ArgCount() > max)
+	{
+		ER_throw(ER_ARGUMENT);
+	}
+}
+
 // The following routines are more or less the same.
 // Their method definitions are in argparse.h.
 // Inline comments provided where one diverges significantly.
@@ -73,6 +84,64 @@ int get_int_arg(int index, int silent, int default_val)
 
 		// If we get this far, then call a type check and then process the results.
 		type_check(argptr, POSINT_TAG, NEGINT_TAG);
+		result = GetIntArg(argptr);
+	
+	// If an error happens and silent is set, assign result anyway.
+	ONERR
+		if (silent > 0 && errCode == ER_ARGUMENT) {
+			result = default_val;
+		}	else {
+			PASS;
+		}
+	ENDTRY
+
+	// Return the result (if we got this far).
+	return result;
+}
+
+int get_pos_int_arg(int index, int silent, int default_val)
+{
+	ESI argptr;
+	int result;
+
+	// Use TIGCC style try/except blocks here.
+	TRY
+		// First check bounds, then call EX_getArg if the check succeeds
+		// (i.e. does not throw an exception).
+		bounds_check(index);
+		argptr = EX_getArg(index);
+
+		// If we get this far, then call a type check and then process the results.
+		type_check(argptr, POSINT_TAG, NULL_TAG);
+		result = GetIntArg(argptr);
+	
+	// If an error happens and silent is set, assign result anyway.
+	ONERR
+		if (silent > 0 && errCode == ER_ARGUMENT) {
+			result = default_val;
+		}	else {
+			PASS;
+		}
+	ENDTRY
+
+	// Return the result (if we got this far).
+	return result;
+}
+
+int get_neg_int_arg(int index, int silent, int default_val)
+{
+	ESI argptr;
+	int result;
+
+	// Use TIGCC style try/except blocks here.
+	TRY
+		// First check bounds, then call EX_getArg if the check succeeds
+		// (i.e. does not throw an exception).
+		bounds_check(index);
+		argptr = EX_getArg(index);
+
+		// If we get this far, then call a type check and then process the results.
+		type_check(argptr, NEGINT_TAG, NULL_TAG);
 		result = GetIntArg(argptr);
 	
 	// If an error happens and silent is set, assign result anyway.
