@@ -57,7 +57,9 @@ at the top of your main program (*before* any other imports!):
 The reason you need to put this define before importing the standard library is
 discussed [here](https://debrouxl.github.io/gcc4ti/htretval.html#reterr), but
 basically, because routines in argparse68k can throw ER_ARGUMENT (the operating
-system's "invalid argument passed to function" error), you need to 
+system's "invalid argument passed to function" error), you need to explicitly
+set a define that forces cleanup code to be ran after an exception is thrown
+(and not caught by the program).
 
 ## Usage
 
