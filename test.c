@@ -11,7 +11,8 @@
 // Enable error returns; argparse68k uses this functionality.
 #define ENABLE_ERROR_RETURN
 
-#include <tigcclib.h>
+#include <kbd.h>
+#include <stdio.h>
 
 // Include the argparse68k library's header file.
 #include "argparse.h"

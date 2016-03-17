@@ -5,7 +5,8 @@
 
 #define ENABLE_ERROR_RETURN
 
-#include <tigcclib.h>
+#include <args.h>
+#include <error.h>
 
 // Define an 'empty' tag using one the AMS does not use.
 #define NULL_TAG _VAR_Q_TAG
