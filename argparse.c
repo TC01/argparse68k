@@ -7,7 +7,7 @@
 
 int bounds_check(int index, int silent)
 {
-	if (!((0 < index) && (index < (int)ArgCount())))
+	if (!((0 <= index) && (index < (int)ArgCount())))
 	{
 		if (silent <= 0)
 		{
