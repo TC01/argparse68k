@@ -24,7 +24,7 @@ void _main(void)
 
 	// Now print out the arguments so the user can see what happened.
 	clrscr();
-	printf("Integer arg: %d\n", val);
+	printf("Integer arg: %d\n", (int)val);
 	printf(arg);
 	ngetchx();
 }

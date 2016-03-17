@@ -5,6 +5,8 @@
 
 #include <tigcclib.h>
 
+#define NULL_TAG _VAR_Q_TAG
+
 int bounds_check(int index, int silent)
 {
 	if (!((0 <= index) && (index < (int)ArgCount())))
@@ -18,17 +20,33 @@ int bounds_check(int index, int silent)
 	return 1;
 }
 
-int type_check(CESI argptr, int silent, enum Tags type)
+int type_check(CESI argptr, int silent, unsigned char type, unsigned char type2)
 {
-	if (GetArgType(argptr) != type)
+	unsigned char argtype;
+	argtype = GetArgType(argptr);
+	
+	int success = 1;
+	
+	if (argtype != type)
+	{
+		if (type2 != NULL_TAG && argtype == type)
+		{
+			success = 1;
+		}
+		else
+		{
+			success = 0;
+		}
+	}
+	
+	if (!success)
 	{
 		if (silent <= 0)
 		{
 			ER_throw(ER_ARGUMENT);
 		}
-		return 0;
 	}
-	return 1;
+	return success;
 }
 
 int get_int_arg(int index, int silent, int default_val)
@@ -41,7 +59,7 @@ int get_int_arg(int index, int silent, int default_val)
 	}
 	
 	argptr = EX_getArg(index);
-	if (type_check(argptr, silent, INT_TAG) == 0)
+	if (type_check(argptr, silent, POSINT_TAG, NEGINT_TAG) == 0)
 	{
 		return default_val;
 	}
@@ -61,7 +79,7 @@ float get_float_arg(int index, int silent, float default_val)
 	}
 	
 	argptr = EX_getArg(index);
-	if (type_check(argptr, silent, FLOAT_TAG) == 0)
+	if (type_check(argptr, silent, FLOAT_TAG, NULL_TAG) == 0)
 	{
 		return default_val;
 	}
@@ -81,7 +99,7 @@ const char* get_str_arg(int index, int silent, const char* default_val)
 	}
 	
 	argptr = EX_getArg(index);
-	if (type_check(argptr, silent, STR_TAG) == 0)
+	if (type_check(argptr, silent, STR_TAG, NULL_TAG) == 0)
 	{
 		return default_val;
 	}
