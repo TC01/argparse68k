@@ -50,7 +50,7 @@ Use Return Value=0
 Enable Error Return=0
 Save Screen=1
 [File Editing]
-Open File=C:\Users\ben\Programming\Calculators\argparse68k\argparse.c
+Open File=C:\Users\bjr\Programming\Calculators\argparse68k\argparse.h
 [Included Files]
 C File 1=argparse.c
 Header File 1=argparse.h
