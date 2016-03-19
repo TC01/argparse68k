@@ -82,3 +82,4 @@ float get_float_arg(int index, int silent, float default_val);
    the value of silent (as described above).
  */
 const char* get_str_arg(int index, int silent, const char* default_val);
+

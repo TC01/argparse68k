@@ -216,3 +216,4 @@ const char* get_str_arg(int index, int silent, const char* default_val)
 	// Return the result (if we got this far).
 	return result;
 }
+
